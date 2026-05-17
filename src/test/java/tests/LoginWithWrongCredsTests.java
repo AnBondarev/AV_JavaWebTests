@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class LoginWithWrongCreds extends BaseTest {
+public class LoginWithWrongCredsTests extends BaseTest {
 
     private static LoginPage loginPage;
 
