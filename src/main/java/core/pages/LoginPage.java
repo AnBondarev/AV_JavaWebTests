@@ -17,6 +17,9 @@ public class LoginPage extends BasePage {
     private SelenideElement forgotPasswordLink = $("[aria-label='Не получается войти?']");
     private SelenideElement registrationButton = $x("//button[.//span[normalize-space()='Зарегистрироваться']]");
 
+    //Кнопка восстановления аккаунта
+    private SelenideElement goToRecoveryButton = $x("//span[normalize-space()='Восстановить']");
+
     //Кнопки соцсетей
     private SelenideElement vkButton = $("[data-l='t,vkc']");
     private SelenideElement mailruButton = $("[data-l='t,mailru']");
@@ -88,6 +91,17 @@ public class LoginPage extends BasePage {
         loginButton.shouldBe(visible).click();
     }
 
+    @Step("Нажать кнопку Войти")
+    public void clickLogin() {
+        loginButton.shouldBe(visible).click();
+    }
+
+    @Step("Ввести пароль")
+    public void setPassword(String password) {
+        passwordField.shouldBe(visible).click();
+        passwordField.shouldBe(visible).setValue(password);
+    }
+
     @Step("Авторизация на сайте с логином {username} и пустым паролем")
     public void loginWithUsername(String username) {
         usernameField.shouldBe(visible).click();
@@ -100,6 +114,11 @@ public class LoginPage extends BasePage {
         passwordField.shouldBe(visible).click();
         passwordField.shouldBe(visible).setValue(password);
         loginButton.shouldBe(visible).click();
+    }
+
+    @Step("Восстановить аккаунт")
+    public void goToRecovery() {
+        goToRecoveryButton.shouldBe(visible).click();
     }
 
     @Step("Переход на страницу восстановления пароля")
