@@ -2,16 +2,16 @@ package tests;
 
 import core.base.BaseTest;
 import core.pages.LoginPage;
-import core.pages.anonymRecoveryPage;
+import core.pages.AnonymRecoveryPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.open;
 
-public class anonymRecoveryByEmailTests extends BaseTest {
+public class AnonymRecoveryByEmailTests extends BaseTest {
 
     private static LoginPage loginPage;
-    private static anonymRecoveryPage anonymRecoveryPage;
+    private static AnonymRecoveryPage anonymRecoveryPage;
 
     @BeforeEach
     public void prepare() {
@@ -30,7 +30,7 @@ public class anonymRecoveryByEmailTests extends BaseTest {
         }
 
         loginPage.goToRecovery();
-        anonymRecoveryPage = new anonymRecoveryPage();
+        anonymRecoveryPage = new AnonymRecoveryPage();
         anonymRecoveryPage.goToRecoveryByEmail();
     }
 }
