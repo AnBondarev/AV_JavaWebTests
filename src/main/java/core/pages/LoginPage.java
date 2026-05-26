@@ -16,6 +16,8 @@ public class LoginPage extends BasePage {
     private SelenideElement loginButton = $("[label='Войти']");
     private SelenideElement forgotPasswordLink = $("[aria-label='Не получается войти?']");
     private SelenideElement registrationButton = $x("//button[.//span[normalize-space()='Зарегистрироваться']]");
+    private SelenideElement tabQRcode = $("[data-l='t,qr_tab']");
+    private SelenideElement imgQRcode = $("[class='qr_code_image']");
 
     //Кнопка восстановления аккаунта
     private SelenideElement goToRecoveryButton = $x("//span[normalize-space()='Восстановить']");
@@ -39,6 +41,7 @@ public class LoginPage extends BasePage {
         usernameField.shouldBe(visible);
         passwordField.shouldBe(visible);
         loginButton.shouldBe(visible);
+        tabQRcode.shouldBe(visible);
         forgotPasswordLink.shouldBe(visible);
         registrationButton.shouldBe(visible);
         vkButton.shouldBe(visible);
@@ -114,6 +117,16 @@ public class LoginPage extends BasePage {
         passwordField.shouldBe(visible).click();
         passwordField.shouldBe(visible).setValue(password);
         loginButton.shouldBe(visible).click();
+    }
+
+    @Step("Перейти на вкладку QR-код для авторизации")
+    public void qoToQRcode() {
+        tabQRcode.shouldBe(visible).click();
+    }
+
+    @Step("Получить QR-код")
+    public SelenideElement getImgQRcode() {
+        return imgQRcode;
     }
 
     @Step("Восстановить аккаунт")
