@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Condition.image;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.open;
 
-public class LoginWithQRcode extends BaseTest {
+public class LoginWithQRcodeTests extends BaseTest {
 
     private static LoginPage loginPage;
 
