@@ -9,6 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class GroupsPage extends BasePage {
 
+    //Кнопка Группы
     private SelenideElement groupsButton = $("[data-l='t,userAltGroup']");
 
     {
@@ -20,7 +21,7 @@ public class GroupsPage extends BasePage {
         groupsButton.shouldBe(visible);
     }
 
-    @Step
+    @Step("Получить элемент Группы")
     public SelenideElement getGroupsButton(){
         return groupsButton.shouldBe(visible);
     }

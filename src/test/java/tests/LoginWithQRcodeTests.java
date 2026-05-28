@@ -22,6 +22,7 @@ public class LoginWithQRcodeTests extends BaseTest {
     @Test
     public void checkQRcode() {
         loginPage.qoToQRcode();
+        //Проверка, что элемент виден и что он - картинка
         loginPage.getImgQRcode().shouldBe(visible).shouldBe(image);
     }
 }

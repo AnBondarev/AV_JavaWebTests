@@ -17,8 +17,11 @@ public abstract class BasePage {
 
     @Step("Выполнить поиск по сайту с запросом: {query}")
     public void goSearch(String query) {
+        //Ввод передаваемого значения в строку поиска
         searchField.shouldBe(visible).setValue(query);
+        //Поиск по значению в коллекции элементов введенного значения
         SelenideElement preResult = $$(".toolbar_search_suggest-item").findBy(text(query));
+        //Клик по совпавшему результату
         preResult.shouldBe(visible).click();
     }
 

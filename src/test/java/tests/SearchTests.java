@@ -23,8 +23,10 @@ public class SearchTests extends BaseTest {
 
     @Test
     public void searchGroupsTest() {
+        //Поиск по передаваемому значению и переход на страницу
         loginPage.goSearch("Angry Тестировщик");
         groupsPage = new GroupsPage();
+        //Проверка, что кнопка Группы видна на странице и активна (нажата)
         groupsPage.getGroupsButton().shouldBe(visible).shouldHave(attribute("data-active", "true"));
     }
 }
