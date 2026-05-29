@@ -3,8 +3,10 @@ package core.base;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$$;
 
 public abstract class BasePage {
 
@@ -13,9 +15,14 @@ public abstract class BasePage {
     protected SelenideElement vkServices = $("[data-l='t,vk']");
     protected SelenideElement headerLogo = $("[tsid='toolbar_logo']");
 
-    @Step("Выполняем поиск по сайту с запросом: {query}")
-    public void search(String query) {
-        searchField.shouldBe(visible).setValue(query).pressEnter();
+    @Step("Выполнить поиск по сайту с запросом: {query}")
+    public void goSearch(String query) {
+        //Ввод передаваемого значения в строку поиска
+        searchField.shouldBe(visible).setValue(query);
+        //Поиск по значению в коллекции элементов введенного значения
+        SelenideElement preResult = $$(".toolbar_search_suggest-item").findBy(text(query));
+        //Клик по совпавшему результату
+        preResult.shouldBe(visible).click();
     }
 
     @Step("Открываем VK Services")

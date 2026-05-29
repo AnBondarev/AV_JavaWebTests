@@ -4,14 +4,20 @@ import com.codeborne.selenide.SelenideElement;
 import core.base.BasePage;
 import io.qameta.allure.Step;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 
 public class AnonymRecoveryPage extends BasePage {
 
     private SelenideElement recoveryByPhoneButton = $("[data-l='t,phone']");
     private SelenideElement recoveryByEmailButton = $("[data-l='t,email']");
     private SelenideElement goToSupportButton = $("[data-l='t,support']");
+    private SelenideElement supportChat = $("[data-l10n='accessibility.ui,anonym-support-chat']");
+    private SelenideElement closeSupportChat = $("[title='Закрыть чат со службой поддержки']");
+    private SelenideElement acceptYesButton = $x("//button[.//span[normalize-space()='Да']]");
 
     {
         verifyPageElements();
@@ -37,5 +43,16 @@ public class AnonymRecoveryPage extends BasePage {
     @Step("Нажать - обратиться в службу поддержки")
     public void goToSupport() {
         goToSupportButton.shouldBe(visible).click();
+    }
+
+    @Step("Получить элемент - чат техподдержки")
+    public SelenideElement getSupportChat() {
+        return supportChat;
+    }
+
+    @Step("Закрыть чат с техподдержкой с подтверждением")
+    public void closeSupportChat(){
+        closeSupportChat.shouldBe(visible, Duration.ofSeconds(10)).click(); //Увеличил таймаут на ожидание загрузки
+        acceptYesButton.shouldBe(visible).click();
     }
 }
