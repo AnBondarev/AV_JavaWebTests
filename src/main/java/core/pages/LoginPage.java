@@ -120,7 +120,7 @@ public class LoginPage extends BasePage {
     }
 
     @Step("Перейти на вкладку QR-код для авторизации")
-    public void qoToQRcode() {
+    public void goToQRcode() {
         tabQRcode.shouldBe(visible).click();
     }
 
