@@ -1,7 +1,7 @@
-package tests;
+package tests.mob;
 
-import core.base.BaseTest;
-import core.pages.LoginPage;
+import core.base.MobileBaseTest;
+import core.pages.mob.LoginMobPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,55 +9,55 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class LoginWithWrongCredsTests extends BaseTest {
+public class LoginWithWrongCredsMobTests extends MobileBaseTest {
 
-    private static LoginPage loginPage;
+    private static LoginMobPage loginMobPage;
 
     @BeforeEach
     public void prepare() {
         open(baseUrl);
-        loginPage = new LoginPage();
+        loginMobPage = new LoginMobPage();
     }
 
     @Test
     public void loginWrongCredsTest() {
         //Авторизация с некорректными кредами
-        loginPage.login("user1234", "password1234");
+        loginMobPage.login("user1234", "password1234");
 
         //Проверка наличия сообщения об ошибке
-        assertTrue(loginPage.isErrorMessageVisible(true, true), "Сообщение об ошибке входа не отображается");
+        assertTrue(loginMobPage.isErrorMessageVisible(true, true), "Сообщение об ошибке входа не отображается");
 
         //Проверка текста сообщения об ошибке
         String expectedErrorMessage = "Неправильно указан логин и/или пароль";
-        String actualErrorMessage = loginPage.getErrorMessageText(true, true);
+        String actualErrorMessage = loginMobPage.getErrorMessageText(true, true);
         assertEquals(expectedErrorMessage, actualErrorMessage, "Текст сообщения об ошибке не совпадает с ожидаемым");
     }
 
     @Test
     public void loginEmptyUsernameTest() {
         //Авторизация с некорректными кредами
-        loginPage.login(null, "password1234");
+        loginMobPage.login(null, "password1234");
 
         //Проверка наличия сообщения об ошибке
-        assertTrue(loginPage.isErrorMessageVisible(false, true), "Сообщение об ошибке входа не отображается");
+        assertTrue(loginMobPage.isErrorMessageVisible(false, true), "Сообщение об ошибке входа не отображается");
 
         //Проверка текста сообщения об ошибке
         String expectedErrorMessage = "Введите логин";
-        String actualErrorMessage = loginPage.getErrorMessageText(false, true);
+        String actualErrorMessage = loginMobPage.getErrorMessageText(false, true);
         assertEquals(expectedErrorMessage, actualErrorMessage, "Текст сообщения об ошибке не совпадает с ожидаемым");
     }
 
     @Test
     public void loginEmptyPasswordTest() {
         //Авторизация с некорректными кредами
-        loginPage.login("user1234", null);
+        loginMobPage.login("user1234", null);
 
         //Проверка наличия сообщения об ошибке
-        assertTrue(loginPage.isErrorMessageVisible(true, false), "Сообщение об ошибке входа не отображается");
+        assertTrue(loginMobPage.isErrorMessageVisible(true, false), "Сообщение об ошибке входа не отображается");
 
         //Проверка текста сообщения об ошибке
         String expectedErrorMessage = "Введите пароль";
-        String actualErrorMessage = loginPage.getErrorMessageText(true, false);
+        String actualErrorMessage = loginMobPage.getErrorMessageText(true, false);
         assertEquals(expectedErrorMessage, actualErrorMessage, "Текст сообщения об ошибке не совпадает с ожидаемым");
     }
 }
